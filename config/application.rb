@@ -29,3 +29,5 @@ module TestProject
     config.generators.system_tests = nil
   end
 end
+
+Rack::Timeout.service_timeout = 1  # seconds
