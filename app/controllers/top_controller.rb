@@ -3,7 +3,9 @@ class TopController < ApplicationController
     begin
       Timeout.timeout(2) do
         loop do
-          Rails.logger.info 'busy...'
+          Thread.handle_interrupt(Rack::Timeout::RequestTimeoutException => :never) {
+            Rails.logger.info 'busy...'
+          }
         end
       end
     rescue
